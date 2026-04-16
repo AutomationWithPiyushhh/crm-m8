@@ -5,27 +5,29 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import generic_utility.FileUtility;
+import generic_utility.JavaUtility;
+
 public class CreateOrgTest {
 	public static void main(String[] args) throws InterruptedException, IOException {
 //		Get data from properties file
-//		step 1:> create a Java Rep. Object of the physical file
-		FileInputStream fis = new FileInputStream("./src/test/resources/cd.properties");
-		
-//		step 2:> by using load(), load all the keys
-		Properties pObj = new Properties();
-		pObj.load(fis);
-		
-//		step 3:> by using getProperty("key") get the value by passing "key"
-		String BROWSER = pObj.getProperty("bro");
-		String URL = pObj.getProperty("url");
-		String USERNAME = pObj.getProperty("un");
-		String PASSWORD = pObj.getProperty("pwd");
-		
+		FileUtility fUtil = new FileUtility();
+
+		String BROWSER = fUtil.getDataFromPropFile("bro");
+		String URL = fUtil.getDataFromPropFile("url");
+		String USERNAME = fUtil.getDataFromPropFile("un");
+		String PASSWORD = fUtil.getDataFromPropFile("pwd");
+
 //		opening browser		
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
@@ -51,10 +53,12 @@ public class CreateOrgTest {
 //		fill form
 		WebElement orgField = driver.findElement(By.name("accountname"));
 
-		String orgName = "awp";
+		
+		String orgName = fUtil.getDataFromExcelFile("org", 2, 0);
+//		String orgName = "awp";
 		orgField.sendKeys(orgName);
 
-		driver.findElement(By.cssSelector("input[type='submit']")).click();
+		driver.findElement(By.cssSelector("input[title='Save [Alt+S]']")).click();
 
 //		verify product
 		String actOrgName = driver.findElement(By.id("dtlview_Organization Name")).getText();
@@ -68,9 +72,9 @@ public class CreateOrgTest {
 //		logout
 		WebElement profileIcon = driver.findElement(By.cssSelector("img[src='themes/softed/images/user.PNG']"));
 		profileIcon.click();
-		
+
 		driver.findElement(By.linkText("Sign Out")).click();
-		
+
 //		browser close		
 		Thread.sleep(3000);
 		driver.quit();
