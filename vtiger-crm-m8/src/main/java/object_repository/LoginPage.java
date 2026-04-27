@@ -3,6 +3,7 @@ package object_repository;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
@@ -11,9 +12,15 @@ public class LoginPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(name = "user_name")
-	private WebElement un;
+//	@FindBy(name = "user_name")
+//	private WebElement un;
 
+	@FindAll({ // => All = OR ===> Auto-Healing
+				@FindBy(name = "user_name"),
+				@FindBy(name = "user")
+			})
+	private WebElement un;
+	
 	@FindBy(name = "user_password")
 	private WebElement pwd;
 

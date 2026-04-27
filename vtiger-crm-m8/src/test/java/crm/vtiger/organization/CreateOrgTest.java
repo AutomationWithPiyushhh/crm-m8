@@ -2,20 +2,26 @@ package crm.vtiger.organization;
 
 import java.io.IOException;
 
-import org.openqa.selenium.By;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.FindBy;
+import org.testng.Reporter;
+import org.testng.annotations.Test;
 
 import generic_utility.FileUtility;
 import generic_utility.JavaUtility;
 import generic_utility.WebdriverUtility;
+import object_repository.CreateOrgPage;
+import object_repository.HomePage;
 import object_repository.LoginPage;
+import object_repository.OrgPage;
+import object_repository.VerifyOrgPage;
 
 public class CreateOrgTest {
 	
-	public static void main(String[] args) throws InterruptedException, IOException {
+	@Test
+	public void createOrganizationTest() throws IOException, InterruptedException {
 //		Get data from properties file
 		FileUtility fUtil = new FileUtility();
 
@@ -35,51 +41,49 @@ public class CreateOrgTest {
 //		login
 		driver.get(URL);
 		
-		LoginPage lp = new LoginPage(driver);
-//		WebElement un = lp.getUn();
-//		un.sendKeys(USERNAME);
-//
-//		WebElement pwd = lp.getPwd();
-//		pwd.sendKeys(PASSWORD);
-//
-//		WebElement loginBtn = lp.getLoginBtn();
-//		loginBtn.click();		
-		
+		LoginPage lp = new LoginPage(driver);		
 		lp.login(USERNAME, PASSWORD);
 		
 //		create organization
-		driver.findElement(By.linkText("Organizations")).click();
-
-		driver.findElement(By.cssSelector("img[alt='Create Organization...']")).click();
+		HomePage hp = new HomePage(driver);
+		hp.getOrgLink().click();
+		
+		OrgPage op = new OrgPage(driver);
+		op.getPlusIcon().click();
 
 //		fill form
-		WebElement orgField = driver.findElement(By.name("accountname"));
+		CreateOrgPage cop = new CreateOrgPage(driver);
+		WebElement orgField = cop.getOrgField();
 
-		
 		String orgName = fUtil.getDataFromExcelFile("org", 2, 0) + JavaUtility.generateRandomNumber();
 //		String orgName = "awp";
 		orgField.sendKeys(orgName);
 
-		driver.findElement(By.cssSelector("input[title='Save [Alt+S]']")).click();
+		cop.getSaveBtn().click();
 
 //		verify product
-		String actOrgName = driver.findElement(By.id("dtlview_Organization Name")).getText();
+		VerifyOrgPage vop = new VerifyOrgPage(driver);
+		
+		String actOrgName = vop.getActOrgName().getText();
 
-		if (actOrgName.equals(orgName)) {
-			System.out.println("Organization created successfullyy !!!!");
-		} else {
-			System.out.println("Better luck next time... Dingeshhh");
-		}
+//		boolean status = actOrgName.equals(orgName);
+//		Assert.assertTrue(status);
+		
+		Assert.assertEquals(actOrgName, orgName);
+		
+//		if (actOrgName.equals("abc"+orgName)) {
+//			Reporter.log("Organization created successfullyy !!!!");
+//		} else {
+//			Reporter.log("Better luck next time... Dingeshhh");
+//		}
 
 //		logout
-		WebElement profileIcon = driver.findElement(By.cssSelector("img[src='themes/softed/images/user.PNG']"));
-		
-		
+		WebElement profileIcon = hp.getProfileIcon();
 		wdUtil.hover(profileIcon);
+		
+		hp.getSignOutLink().click();		
 
-		driver.findElement(By.linkText("Sign Out")).click();
-
-//		browser close		
+//		browser close	
 		Thread.sleep(3000);
 		driver.quit();
 	}
