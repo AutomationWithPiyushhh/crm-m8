@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Mon Apr 27 14:44:54 IST 2026</td>
+<td>Started on:</td><td>Thu Apr 30 14:25:00 IST 2026</td>
 </tr>
-<tr><td>Total time:</td><td>0 seconds (72 ms)</td>
+<tr><td>Total time:</td><td>0 seconds (64 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,13 +76,13 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='learning_assertion.HardAssert.case1()'><b>case1</b><br>Test class: learning_assertion.HardAssert</td>
-<td><div><pre>java.lang.AssertionError: expected [false] but found [true]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertFalse(Assert.java:79)
-	at org.testng.Assert.assertFalse(Assert.java:89)
-	at learning_assertion.HardAssert.case1(HardAssert.java:18)
+<td title='learning_assertion.Learning_SoftAssert.case1()'><b>case1</b><br>Test class: learning_assertion.Learning_SoftAssert</td>
+<td><div><pre>java.lang.AssertionError: The following asserts failed:
+	expected [true] but found [false],
+	expected [false] but found [true]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:46)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:30)
+	at learning_assertion.Learning_SoftAssert.case1(Learning_SoftAssert.java:23)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -109,13 +109,13 @@ function toggleAllBoxes() {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</pre></div><a href='#' onClick='toggleBox("stack-trace696933920", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace696933920'><pre>java.lang.AssertionError: expected [false] but found [true]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertFalse(Assert.java:79)
-	at org.testng.Assert.assertFalse(Assert.java:89)
-	at learning_assertion.HardAssert.case1(HardAssert.java:18)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1855026648", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1855026648'><pre>java.lang.AssertionError: The following asserts failed:
+	expected [true] but found [false],
+	expected [false] but found [true]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:46)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:30)
+	at learning_assertion.Learning_SoftAssert.case1(Learning_SoftAssert.java:23)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -144,7 +144,7 @@ function toggleAllBoxes() {
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 </pre></div></td>
 <td>0</td>
-<td>learning_assertion.HardAssert@41c2284a</td></tr>
+<td>learning_assertion.Learning_SoftAssert@41c2284a</td></tr>
 </table><p>
 </body>
 </html>

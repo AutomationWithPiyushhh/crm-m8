@@ -62,20 +62,19 @@ public class CreateOrgTest {
 		cop.getSaveBtn().click();
 
 //		verify product
-		VerifyOrgPage vop = new VerifyOrgPage(driver);
-		
+		VerifyOrgPage vop = new VerifyOrgPage(driver);	
 		String actOrgName = vop.getActOrgName().getText();
 
-//		boolean status = actOrgName.equals(orgName);
-//		Assert.assertTrue(status);
-		
-		Assert.assertEquals(actOrgName, orgName);
-		
 //		if (actOrgName.equals("abc"+orgName)) {
 //			Reporter.log("Organization created successfullyy !!!!");
 //		} else {
 //			Reporter.log("Better luck next time... Dingeshhh");
 //		}
+
+//		boolean status = actOrgName.equals(orgName);
+//		Assert.assertTrue(status);
+		
+		Assert.assertEquals(actOrgName, orgName);
 
 //		logout
 		WebElement profileIcon = hp.getProfileIcon();

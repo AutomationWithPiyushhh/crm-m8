@@ -2,8 +2,9 @@ package learning_assertion;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
-public class HardAssert { // => AssertionError
+public class Learning_SoftAssert { // => AssertionError
 	@Test
 	public void case1() {
 
@@ -14,8 +15,12 @@ public class HardAssert { // => AssertionError
 		boolean status1 = a.equals(b); // false
 		boolean status2 = a.equals(c); // true
 		
-		Assert.assertTrue(status1);	
+		SoftAssert sa = new SoftAssert();
+		sa.assertTrue(status1);
+		sa.assertFalse(status2);
 		
-		System.out.println("the last line of code");
+		System.out.println("the last line");
+		sa.assertAll();
+		sa.assertTrue(status1);
 	}
 }
