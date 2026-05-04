@@ -1,0 +1,10 @@
+<suite name="suite">
+	<test name="test">
+		<parameter name="fn" value="Dinga"></parameter>
+		<parameter name="ln" value="Mishra"></parameter>
+		<classes>
+			<class name="ddt_extra.GetDataFromXML" />
+		</classes>
+	</test>
+
+</suite>

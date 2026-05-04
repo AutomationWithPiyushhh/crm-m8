@@ -1,37 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="4" total="9" passed="5" failed="0" skipped="0">
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-04-30T14:58:09 IST" name="Suite" finished-at="2026-04-30T14:58:09 IST" duration-ms="76">
+  <suite started-at="2026-05-04T14:49:47 IST" name="suite" finished-at="2026-05-04T14:50:06 IST" duration-ms="18777">
     <groups>
     </groups>
-    <test started-at="2026-04-30T14:58:09 IST" name="Test" finished-at="2026-04-30T14:58:09 IST" duration-ms="76">
-      <class name="type_of_execution.LeadTest">
-        <test-method signature="createLeadTest()[pri:0, instance:type_of_execution.LeadTest@343570b7]" started-at="2026-04-30T14:58:09 IST" name="createLeadTest" finished-at="2026-04-30T14:58:09 IST" duration-ms="2" status="PASS">
+    <test started-at="2026-05-04T14:49:47 IST" name="test2" finished-at="2026-05-04T14:50:01 IST" duration-ms="13474">
+      <class name="type_of_execution.OpenBrowser">
+        <test-method signature="openBro(java.lang.String)[pri:0, instance:type_of_execution.OpenBrowser@67080771]" started-at="2026-05-04T14:49:47 IST" name="openBro" finished-at="2026-05-04T14:50:01 IST" duration-ms="13410" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[edge]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createLeadTest -->
-      </class> <!-- type_of_execution.LeadTest -->
-      <class name="type_of_execution.ContactTest">
-        <test-method signature="createContactTest()[pri:0, instance:type_of_execution.ContactTest@3943a2be]" started-at="2026-04-30T14:58:09 IST" name="createContactTest" finished-at="2026-04-30T14:58:09 IST" duration-ms="1" status="PASS">
+        </test-method> <!-- openBro -->
+      </class> <!-- type_of_execution.OpenBrowser -->
+    </test> <!-- test2 -->
+    <test started-at="2026-05-04T14:49:47 IST" name="test1" finished-at="2026-05-04T14:50:01 IST" duration-ms="13426">
+      <class name="type_of_execution.OpenBrowser">
+        <test-method signature="openBro(java.lang.String)[pri:0, instance:type_of_execution.OpenBrowser@5ab9e72c]" started-at="2026-05-04T14:49:47 IST" name="openBro" finished-at="2026-05-04T14:50:01 IST" duration-ms="13355" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createContactTest -->
-      </class> <!-- type_of_execution.ContactTest -->
-      <class name="type_of_execution.OrgTest">
-        <test-method signature="createOrgTest()[pri:0, instance:type_of_execution.OrgTest@1d8bd0de]" started-at="2026-04-30T14:58:09 IST" name="createOrgTest" finished-at="2026-04-30T14:58:09 IST" duration-ms="9" status="PASS">
+        </test-method> <!-- openBro -->
+      </class> <!-- type_of_execution.OpenBrowser -->
+    </test> <!-- test1 -->
+    <test started-at="2026-05-04T14:49:47 IST" name="test3" finished-at="2026-05-04T14:50:06 IST" duration-ms="18777">
+      <class name="type_of_execution.OpenBrowser">
+        <test-method signature="openBro(java.lang.String)[pri:0, instance:type_of_execution.OpenBrowser@5fd4f8f5]" started-at="2026-05-04T14:49:47 IST" name="openBro" finished-at="2026-05-04T14:50:06 IST" duration-ms="18714" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createOrgTest -->
-        <test-method signature="deleteOrgTest()[pri:0, instance:type_of_execution.OrgTest@1d8bd0de]" started-at="2026-04-30T14:58:09 IST" name="deleteOrgTest" finished-at="2026-04-30T14:58:09 IST" duration-ms="2" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- deleteOrgTest -->
-        <test-method signature="modifyOrgTest()[pri:0, instance:type_of_execution.OrgTest@1d8bd0de]" started-at="2026-04-30T14:58:09 IST" name="modifyOrgTest" finished-at="2026-04-30T14:58:09 IST" duration-ms="2" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- modifyOrgTest -->
-      </class> <!-- type_of_execution.OrgTest -->
-    </test> <!-- Test -->
-  </suite> <!-- Suite -->
+        </test-method> <!-- openBro -->
+      </class> <!-- type_of_execution.OpenBrowser -->
+    </test> <!-- test3 -->
+  </suite> <!-- suite -->
 </testng-results>

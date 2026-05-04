@@ -1,20 +1,10 @@
 
 <suite name="Suite">
-	<test thread-count="5" name="Test">
+	<test thread-count="5" name="TestRunner">
 		<classes>
 			<class name="type_of_execution.OrgTest" />  
-			
-			<class name="type_of_execution.ContactTest"> 
-				<methods>
-					<exclude name="createContactTest" />
-				</methods>
-			</class>
-			
-			<class name="type_of_execution.LeadTest" > 
-				<methods>
-					<exclude name="createLeadTest" />
-				</methods>
-			</class>
+			<class name="type_of_execution.ContactTest" />			
+			<class name="type_of_execution.LeadTest" />
 		</classes>
 	</test>
 </suite>
