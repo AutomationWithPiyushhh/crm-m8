@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class OrgTest {
 
-	@Test
+	@Test(groups = "reg")
 	public void createOrgTest() throws InterruptedException{
         WebDriver driver = new ChromeDriver();
 		System.out.println("Create Org");
@@ -14,7 +14,7 @@ public class OrgTest {
 		driver.quit();
 	}
 
-	@Test
+	@Test(groups = "reg")
 	public void modifyOrgTest() throws InterruptedException{
         WebDriver driver = new ChromeDriver();
 		System.out.println("Modify Org");
@@ -22,7 +22,7 @@ public class OrgTest {
 		driver.quit();
 	}
 
-	@Test
+	@Test(groups = {"smoke","reg"})
 	public void deleteOrgTest() throws InterruptedException{
         WebDriver driver = new ChromeDriver();
 		System.out.println("Delete Org");

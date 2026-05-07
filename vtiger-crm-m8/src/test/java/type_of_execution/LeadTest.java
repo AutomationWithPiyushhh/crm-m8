@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class LeadTest {
 
-	@Test
+	@Test(groups = "smoke")
 	public void createLeadTest() throws InterruptedException {
 		WebDriver driver = new ChromeDriver();
 		System.out.println("Create Lead");
@@ -14,7 +14,7 @@ public class LeadTest {
 		driver.quit();
 	}
 
-	@Test
+	@Test(groups = "smoke")
 	public void modifyLeadTest() throws InterruptedException {
 		WebDriver driver = new ChromeDriver();
 		System.out.println("Modify Lead");
@@ -22,7 +22,7 @@ public class LeadTest {
 		driver.quit();
 	}
 
-	@Test
+	@Test(groups = "reg")
 	public void deleteLeadTest() throws InterruptedException {
 		WebDriver driver = new ChromeDriver();
 		System.out.println("Delete Lead");

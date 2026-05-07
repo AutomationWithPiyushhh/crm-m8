@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class ContactTest {
 
-	@Test
+	@Test(groups = "smoke")
 	public void createContactTest() throws InterruptedException {
 		WebDriver driver = new ChromeDriver();
 		System.out.println("Create Contact");
@@ -14,7 +14,7 @@ public class ContactTest {
 		driver.quit();
 	}
 
-	@Test
+	@Test(groups = "reg")
 	public void modifyContactTest()  throws InterruptedException{
 		WebDriver driver = new ChromeDriver();
 		System.out.println("Modify Contact");
@@ -22,7 +22,7 @@ public class ContactTest {
 		driver.quit();
 	}
 
-	@Test
+	@Test(groups = "reg")
 	public void deleteContactTest()  throws InterruptedException{
 		WebDriver driver = new ChromeDriver();
 		System.out.println("Delete Contact");
