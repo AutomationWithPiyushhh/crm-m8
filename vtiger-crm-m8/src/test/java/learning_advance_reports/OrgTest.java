@@ -1,9 +1,13 @@
-package crm.vtiger.organization;
+package learning_advance_reports;
 
-import java.io.IOException;
+import java.time.Duration;
 
-import org.junit.Assert;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentReports;
@@ -12,27 +16,22 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-import base_utility.BaseClass;
-import generic_utility.FileUtility;
 import generic_utility.JavaUtility;
-import object_repository.CreateOrgPage;
-import object_repository.HomePage;
-import object_repository.OrgPage;
-import object_repository.VerifyOrgPage;
 
-public class CreateOrgTest extends BaseClass {
+public class OrgTest {
 
 	@Test
-	public void createOrganizationTest() throws IOException, InterruptedException {
+	public void createOrgTest() {
 
 		// =========================================================
-		// STEP 1: Configure Extent Report
+		// STEP 1: Configure Extent Spark Reporter
 		// =========================================================
 
-		ExtentSparkReporter spark = new ExtentSparkReporter("./advance_reports/OrganizationReport.html");
+		String time = JavaUtility.generateTime();
+		ExtentSparkReporter spark = new ExtentSparkReporter("./advance_reports/" + time + ".html");
 
 		spark.config().setDocumentTitle("VTiger CRM | Automation Test Results");
-		spark.config().setReportName("Organization Module Regression Execution Report");
+		spark.config().setReportName("QA Automation Regression Suite Execution Report");
 		spark.config().setTheme(Theme.STANDARD);
 
 		// =========================================================
@@ -43,92 +42,78 @@ public class CreateOrgTest extends BaseClass {
 		report.attachReporter(spark);
 
 		// =========================================================
-		// STEP 3: Add System Information
+		// STEP 3: Add System / Environment Information
 		// =========================================================
 
 		report.setSystemInfo("Project Name", "VTiger CRM Automation");
-		report.setSystemInfo("Module", "Organization Module");
+		report.setSystemInfo("Module", "Organization Management");
 		report.setSystemInfo("Tester", "QA Automation Engineer");
 		report.setSystemInfo("Environment", "QA");
 		report.setSystemInfo("Browser", "Chrome");
-		report.setSystemInfo("Framework", "Hybrid Framework");
+		report.setSystemInfo("Operating System", "Windows 11");
 		report.setSystemInfo("Automation Tool", "Selenium WebDriver");
+		report.setSystemInfo("Framework", "TestNG Hybrid Framework");
 		report.setSystemInfo("Build Version", "v1.0.0");
 
 		// =========================================================
-		// STEP 4: Create Test Entry
+		// STEP 4: Create Test Case Entry in Report
 		// =========================================================
 
-		ExtentTest test = report.createTest("Create Organization Test");
+		ExtentTest test = report.createTest("createOrgTest");
+
+		WebDriver driver = null;
 
 		try {
 
 			// =========================================================
-			// STEP 5: Navigate to Organization Module
+			// STEP 5: Launch Browser
 			// =========================================================
 
-			HomePage hp = new HomePage(driver);
+			test.log(Status.INFO, "Launching Chrome browser");
 
-			hp.getOrgLink().click();
+			driver = new ChromeDriver();
 
-			test.log(Status.PASS, "Navigated to Organization module");
+			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
-			// =========================================================
-			// STEP 6: Click Create Organization Icon
-			// =========================================================
-
-			OrgPage op = new OrgPage(driver);
-
-			op.getPlusIcon().click();
-
-			test.log(Status.PASS, "Clicked on Create Organization icon");
+			test.log(Status.PASS, "Browser launched successfully");
 
 			// =========================================================
-			// STEP 7: Read Test Data
+			// STEP 6: Navigate to Application
 			// =========================================================
 
-			FileUtility fUtil = new FileUtility();
+			driver.get("http://localhost:8888/");
 
-			String orgName = fUtil.getDataFromExcelFile("org", 2, 0)
-					+ JavaUtility.generateRandomNumber();
-
-			test.log(Status.INFO, "Generated organization name : " + orgName);
+			test.log(Status.INFO, "Navigated to VTiger CRM application");
 
 			// =========================================================
-			// STEP 8: Fill Organization Form
+			// STEP 7: Login to Application
 			// =========================================================
 
-			CreateOrgPage cop = new CreateOrgPage(driver);
+			driver.findElement(By.name("user_name")).sendKeys("admin");
+			test.log(Status.INFO, "Entered username");
 
-			WebElement orgField = cop.getOrgField();
+			driver.findElement(By.name("user_password")).sendKeys("password");
+			test.log(Status.INFO, "Entered password");
 
-			orgField.sendKeys(orgName);
+			new Actions(driver).sendKeys(Keys.ENTER).build().perform();
 
-			test.log(Status.PASS, "Entered organization name");
-
-			cop.getSaveBtn().click();
-
-			test.log(Status.PASS, "Clicked on Save button");
+			test.log(Status.INFO, "Clicked on Login button");
 
 			// =========================================================
-			// STEP 9: Verify Organization Creation
+			// STEP 8: Validation
 			// =========================================================
 
-			VerifyOrgPage vop = new VerifyOrgPage(driver);
+			boolean status = driver.findElement(By.partialLinkText("Home")).isDisplayed();
 
-			String actOrgName = vop.getActOrgName().getText();
+			Assert.assertTrue(status, "Login failed...");
 
-			Assert.assertEquals(actOrgName, orgName);
-
-			test.log(Status.PASS, "Organization created successfully");
-
-			test.log(Status.INFO, "Expected Org Name : " + orgName);
-			test.log(Status.INFO, "Actual Org Name : " + actOrgName);
+			test.log(Status.PASS, "User logged into VTiger CRM successfully");
 
 		} catch (Exception e) {
 
 			// =========================================================
-			// STEP 10: Failure Handling
+			// STEP 9: Handle Failure
 			// =========================================================
 
 			test.log(Status.FAIL, "Test case failed due to : " + e.getMessage());
@@ -136,6 +121,15 @@ public class CreateOrgTest extends BaseClass {
 			throw e;
 
 		} finally {
+
+			// =========================================================
+			// STEP 10: Close Browser
+			// =========================================================
+
+			if (driver != null) {
+				driver.quit();
+				test.log(Status.INFO, "Browser closed successfully");
+			}
 
 			// =========================================================
 			// STEP 11: Generate Report

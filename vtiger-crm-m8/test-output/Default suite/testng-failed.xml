@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="type_of_execution.OpenBrowser">
+      <class name="learning_advance_reports.OrgTest">
         <methods>
-          <include name="openBro"/>
+          <include name="createOrgTest"/>
         </methods>
-      </class> <!-- type_of_execution.OpenBrowser -->
+      </class> <!-- learning_advance_reports.OrgTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
