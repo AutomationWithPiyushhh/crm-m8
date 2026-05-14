@@ -3,11 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="learning_advance_reports.OrgTest">
+      <class name="learning_listeners.Practice_Listeners">
         <methods>
-          <include name="createOrgTest"/>
+          <include name="modify"/>
+          <include name="delete"/>
         </methods>
-      </class> <!-- learning_advance_reports.OrgTest -->
+      </class> <!-- learning_listeners.Practice_Listeners -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
